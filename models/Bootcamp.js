@@ -47,6 +47,41 @@ const BootcampSchema = new mongoose.Schema({
       type: [Number],
       required: true,
       index: "2dsphere"
-    }
-  }
+    },
+    formattedAddress: String,
+    street: String,
+    city: String,
+    State: String,
+    zipcode: String,
+    country: String
+  },
+  careers: {
+    type: [String],
+    required: true,
+    enum: [
+      "Web Development",
+      "Mobile Development",
+      "UI/UX",
+      "Data Science",
+      "Business",
+      "Others"
+    ]
+  },
+  averageRating: {
+    type: Number,
+    min: [1, "Rating must be at least 1"],
+    max: [10, "Rating can not be more than 10"]
+  },
+  averageCost: Number,
+  photo: {
+    type: String,
+    default: "no-photo.jpg"
+  },
+  housing: { type: Boolean, default: false },
+  jobAssistance: { type: Boolean, defaul: false },
+  jobGuarantee: { type: Boolean, default: false },
+  acceptGi: { type: Boolean, default: false },
+  createdAt: { type: Date, default: new Date() }
 });
+
+module.exports = mongosee.model("Bootcamp", BootcampSchema);
